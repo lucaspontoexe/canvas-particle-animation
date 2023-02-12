@@ -17,8 +17,28 @@ export default class Particle {
   }
 
   respawn(direction) {
-    this.y = direction === 'y' ? 0 : Math.random() * canvas.height;
-    this.x = direction === 'x' ? 0 : Math.random() * canvas.width;
+    switch (direction) {
+      case "up":
+        this.y = canvas.height;
+        this.x = Math.random() * canvas.width;
+        break;
+      case "down":
+        this.y = 0;
+        this.x = Math.random() * canvas.width;
+        break;
+      case "left":
+        this.x = canvas.width;
+        this.y = Math.random() * canvas.height;
+        break;
+      case "right":
+        this.x = 0;
+        this.y = Math.random() * canvas.height;
+        break;
+
+      default:
+        break;
+    }
+
     this.radius = Math.random() * 2;
     this.randomRate = Math.random() + 1;
   }
@@ -31,8 +51,10 @@ export default class Particle {
     this.y += speed * this.randomRate;
     this.x += this.randomRate;
 
-    if (this.y > canvas.height) this.respawn('y');
-    if (this.x > canvas.width) this.respawn('x');
+    if (this.y < 0)             this.respawn("up");
+    if (this.y > canvas.height) this.respawn("down");
+    if (this.x < 0)             this.respawn("left");
+    if (this.x > canvas.width)  this.respawn("right");
 
     this.draw();
   }
