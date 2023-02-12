@@ -16,11 +16,17 @@
             position: fixed;
             z-index: -1;
         } 
+        pre {
+            color: white;
+            background-color: black;
+            width: 100px;
+        }
     </style>
 </head>
 <body>
     <canvas></canvas>
     <input type="range" class="slider" min="-10" max="10" value="4" step="0.1">
+    <pre>fps: <span class="fps">0</span></pre>
 </body>
 
 <script type="module" src="scripts/script.js"></script>
