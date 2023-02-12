@@ -29,7 +29,7 @@ export default class Particle {
    */
   update(speed) {
     this.y += speed * this.randomRate;
-    this.x += 1;
+    this.x += this.randomRate;
 
     if (this.y > canvas.height) this.respawn('y');
     if (this.x > canvas.width) this.respawn('x');
