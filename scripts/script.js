@@ -19,7 +19,7 @@ function initStars() {
 }
 
 function animate() {
-  c.fillStyle = "rgba(0,0,0,0.2)";
+  c.fillStyle = "rgba(0,0,0,0.25)";
   c.fillRect(0, 0, canvas.width, canvas.height);
 
   particles.forEach((particle) => {

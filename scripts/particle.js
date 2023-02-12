@@ -16,19 +16,23 @@ export default class Particle {
     c.closePath();
   }
 
+  respawn(direction) {
+    this.y = direction === 'y' ? 0 : Math.random() * canvas.height;
+    this.x = direction === 'x' ? 0 : Math.random() * canvas.width;
+    this.radius = Math.random() * 2;
+    this.randomRate = Math.random() + 1;
+  }
+
   /**
    * update and redraw particle
    * @param {number} speed
    */
   update(speed) {
     this.y += speed * this.randomRate;
+    this.x += 1;
 
-    if (this.y > canvas.height) {
-      // recreate particle
-      this.y -= canvas.height;
-      this.x = Math.random() * canvas.width;
-      this.randomRate = Math.random();
-    }
+    if (this.y > canvas.height) this.respawn('y');
+    if (this.x > canvas.width) this.respawn('x');
 
     this.draw();
   }
