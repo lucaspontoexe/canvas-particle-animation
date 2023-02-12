@@ -2,7 +2,7 @@ import { canvas, context as c } from "./canvas.js";
 import Particle from "./particle.js";
 let slider = document.querySelector('input[type=range]');
 
-let particlesSpeed = 4;
+let particle_y_speed = 4;
 let particles = [];
 
 function initStars() {
@@ -23,7 +23,7 @@ function animate() {
   c.fillRect(0, 0, canvas.width, canvas.height);
 
   particles.forEach((particle) => {
-    particle.update(particlesSpeed);
+    particle.update(particle_y_speed);
   });
 
   requestAnimationFrame(animate);
@@ -32,4 +32,4 @@ function animate() {
 initStars();
 animate();
 window.addEventListener("resize", initStars);
-slider.addEventListener("input", e => particlesSpeed = +e.target.value);
+slider.addEventListener("input", e => particle_y_speed = +e.target.value);
