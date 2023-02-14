@@ -1,5 +1,12 @@
 import { canvas, context as c } from "./canvas.js";
 
+const directions = Object.freeze({
+  up: 0,
+  down: 1,
+  left: 2,
+  right: 3,
+});
+ 
 export default class Particle {
   constructor() {
     this.x = Math.random() * canvas.width;
@@ -16,21 +23,25 @@ export default class Particle {
     c.closePath();
   }
 
+  /**
+   * respawn particle
+   * @param {number} direction Directions. See "directions" object.
+   */
   respawn(direction) {
     switch (direction) {
-      case "up":
+      case 0:
         this.y = canvas.height;
         this.x = Math.random() * canvas.width;
         break;
-      case "down":
+      case 1:
         this.y = 0;
         this.x = Math.random() * canvas.width;
         break;
-      case "left":
+      case 2:
         this.x = canvas.width;
         this.y = Math.random() * canvas.height;
         break;
-      case "right":
+      case 3:
         this.x = 0;
         this.y = Math.random() * canvas.height;
         break;
@@ -47,14 +58,14 @@ export default class Particle {
    * update and redraw particle
    * @param {number} speed
    */
-  update([x,y]) {
+  update([x, y]) {
     this.x += x * this.randomRate;
     this.y += y * this.randomRate;
 
-    if (this.y < 0)             this.respawn("up");
-    if (this.y > canvas.height) this.respawn("down");
-    if (this.x < 0)             this.respawn("left");
-    if (this.x > canvas.width)  this.respawn("right");
+    if (this.y < 0)               this.respawn(directions.up);
+    if (this.y > canvas.height)   this.respawn(directions.down);
+    if (this.x < 0)               this.respawn(directions.left);
+    if (this.x > canvas.width)    this.respawn(directions.right);
 
     this.draw();
   }
