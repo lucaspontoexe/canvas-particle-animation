@@ -47,9 +47,9 @@ export default class Particle {
    * update and redraw particle
    * @param {number} speed
    */
-  update(speed) {
-    this.y += speed * this.randomRate;
-    this.x += this.randomRate;
+  update([x,y]) {
+    this.x += x * this.randomRate;
+    this.y += y * this.randomRate;
 
     if (this.y < 0)             this.respawn("up");
     if (this.y > canvas.height) this.respawn("down");
