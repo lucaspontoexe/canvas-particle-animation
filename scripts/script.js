@@ -20,7 +20,7 @@ function initStars(count = 1500) {
   for (let i = 0; i < count; i++) {
     particles.push(new Particle());
   }
-  // otimizar etc
+
   particles.forEach((p) => p.draw());
 }
 
